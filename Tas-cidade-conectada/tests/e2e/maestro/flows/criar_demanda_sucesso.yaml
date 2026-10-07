@@ -1,0 +1,26 @@
+url: http://localhost:3000/web
+tags:
+  - smoke
+  - demanda
+---
+- launchApp
+- runFlow:
+    file: ../subflows/login.yaml
+    env:
+      EMAIL: ana@exemplo.com
+      SENHA: senha123
+- scrollUntilVisible:
+    element:
+      id: "campo-descricao"
+- tapOn:
+    id: "campo-descricao"
+- inputText: "Buraco grande na pista sentido bairro Cordeiro, proximo ao numero 450."
+- scrollUntilVisible:
+    element:
+      id: "botao-enviar"
+- tapOn:
+    id: "botao-enviar"
+# Como já rolamos até o botão, a mensagem vai aparecer direto na visão dele.
+# O assertVisible vai esperar os segundos necessários sozinho!
+- assertVisible: "Demanda registrada."
+- assertVisible: "Protocolo DEM-.*"

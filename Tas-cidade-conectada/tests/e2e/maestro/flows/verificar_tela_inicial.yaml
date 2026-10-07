@@ -1,0 +1,8 @@
+url: http://localhost:3000/web
+tags:
+  - inicial
+---
+- launchApp
+- assertVisible: "Cidade Conectada"
+- assertVisible: "Entrar"
+- assertVisible: "E-mail"

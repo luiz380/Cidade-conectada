@@ -1,0 +1,11 @@
+url: http://localhost:3000/web
+tags:
+  - login
+---
+- launchApp
+- runFlow:
+    file: ../subflows/login.yaml
+    env:
+      EMAIL: usuario_errado@exemplo.com
+      SENHA: senha_incorreta123
+- assertVisible: "Credenciais invalidas."

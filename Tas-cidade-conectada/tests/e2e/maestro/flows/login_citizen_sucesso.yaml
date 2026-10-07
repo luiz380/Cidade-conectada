@@ -1,0 +1,20 @@
+url: http://localhost:3000/web
+tags:
+  - smoke
+  - login
+---
+- launchApp
+- tapOn:
+    id: "campo-email"
+- inputText: "ana@exemplo.com"
+- tapOn:
+    id: "campo-senha"
+- inputText: "senha123"
+- tapOn:
+    id: "botao-entrar"
+- assertVisible: "Autenticado como Ana Cidada"
+- scrollUntilVisible:
+    element:
+      id: "campo-descricao"
+- tapOn:
+    id: "campo-descricao"

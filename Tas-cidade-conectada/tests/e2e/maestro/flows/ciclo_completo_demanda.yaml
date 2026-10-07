@@ -1,0 +1,36 @@
+url: http://localhost:3000/web
+tags:
+  - e2e
+  - ciclo_completo
+---
+- launchApp
+- runFlow:
+    file: ../subflows/login.yaml
+    env:
+      EMAIL: ana@exemplo.com
+      SENHA: senha123
+
+# ETAPA 1: Preencher e enviar a demanda
+- scrollUntilVisible:
+    element:
+      id: "campo-descricao"
+- tapOn:
+    id: "campo-descricao"
+- inputText: "Asfalto cedendo na avenida principal, risco de acidente grave."
+- scrollUntilVisible:
+    element:
+      id: "botao-enviar"
+- tapOn:
+    id: "botao-enviar"
+
+# ETAPA 2: Confirmar a mensagem de sucesso
+- assertVisible: "Demanda registrada."
+
+# ETAPA 3: Verificar se a demanda aparece no histórico do usuário
+- scrollUntilVisible:
+    element:
+      text: "Atualizar lista"
+- tapOn: "Atualizar lista"
+# O assertVisible cuida da espera natural do carregamento!
+- assertVisible: "DEM-.*"
+- assertVisible: ".*RECEIVED.*"
